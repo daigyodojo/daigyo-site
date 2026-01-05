@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Área do Aluno</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topo">
+    <div class="topo-container">
+        <div class="logo">
+            Daigyo
+        </div>
+
+        <nav class="menu">
+            <a href="/index.html">Início</a>
+            <a href="#">Institucional</a>
+            <a href="#">Eventos</a>
+            <a href="#">Contato</a>
+            <a href="#" id="logoutLink">Sair</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <h1>Área do Aluno</h1>
+
+    <p id="boasVindas"></p><br>
+
+    <h2>Comunicados</h2>
+
+    <ul id="listaComunicados"></ul>
+<br>
+    <h2>Próximos Eventos</h2>
+<ul id="listaEventos"></ul>
+<br>
+<h2>Materiais</h2>
+<ul id="listaMateriais"></ul>
+<br><br>
+    <button id="logout">Sair</button>
+
+</div>
+
+<script>
+async function carregarDados() {
+    const res = await fetch('/aluno/dados');
+    const dados = await res.json();
+
+    document.getElementById('boasVindas').textContent =
+        `Bem-vindo, ${dados.nome}`;
+}
+
+async function carregarComunicados() {
+    const res = await fetch('/aluno/comunicados');
+    const comunicados = await res.json();
+
+    const ul = document.getElementById('listaComunicados');
+    ul.innerHTML = '';
+
+    comunicados.forEach(c => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${c.titulo}</strong><br>${c.texto}`;
+        ul.appendChild(li);
+    });
+}
+
+document.getElementById('logout').addEventListener('click', async () => {
+    await fetch('/logout', { method: 'POST' });
+    window.location.href = '/login.html';
+});
+
+carregarDados();
+carregarComunicados();
+async function carregarEventosAluno() {
+    const res = await fetch('/aluno/eventos');
+    const eventos = await res.json();
+
+    const ul = document.getElementById('listaEventos');
+    ul.innerHTML = '';
+
+    eventos.forEach(e => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${e.titulo}</strong> (${e.data})<br>${e.descricao}`;
+        ul.appendChild(li);
+    });
+}
+
+carregarEventosAluno();
+
+async function carregarMateriaisAluno() {
+    const res = await fetch('/aluno/materiais');
+    const materiais = await res.json();
+
+    const ul = document.getElementById('listaMateriais');
+    ul.innerHTML = '';
+
+    materiais.forEach(m => {
+        const li = document.createElement('li');
+        li.innerHTML = `<a href="${m.link}" target="_blank">${m.titulo}</a>`;
+        ul.appendChild(li);
+    });
+}
+
+carregarMateriaisAluno();
+
+const logoutLink = document.getElementById('logoutLink');
+if (logoutLink) {
+    logoutLink.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await fetch('/logout', { method: 'POST' });
+        window.location.href = '/login.html';
+    });
+}
+
+
+</script>
+<footer class="rodape">
+    <div class="rodape-container">
+        <p class="rodape-nome">Daigyo Karatê-Dō</p>
+        <p class="rodape-info">
+            Organização dedicada à preservação do Karatê tradicional
+        </p>
+        <p class="rodape-copy">
+            © 2026 · Todos os direitos reservados
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

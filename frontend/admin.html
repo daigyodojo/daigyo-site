@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header class="topo">
+    <div class="topo-container">
+        <div class="logo">
+            Daigyo
+        </div>
+
+        <nav class="menu">
+            <a href="/index.html">Início</a>
+            <a href="#">Institucional</a>
+            <a href="#">Eventos</a>
+            <a href="#">Contato</a>
+            <a href="#" id="logoutLink">Sair</a>
+        </nav>
+    </div>
+</header>
+
+
+<div class="container">
+
+    <h1>Painel Administrativo</h1>
+
+    <h2>Cadastrar Aluno</h2>
+
+    <form id="formAluno">
+        <label>Nome</label>
+        <input type="text" id="nome" required>
+
+        <label>E-mail</label>
+        <input type="email" id="email" required>
+
+        <label>Senha</label>
+        <input type="password" id="senha" required>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <h2>Usuários</h2>
+
+    <table id="tabelaUsuarios" border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Status</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+<br>
+    <h2>Eventos</h2>
+
+<form id="formEvento">
+    <label>Título</label>
+    <input type="text" id="tituloEvento" required>
+
+    <label>Descrição</label>
+    <input type="text" id="descricaoEvento">
+
+    <label>Data</label>
+    <input type="date" id="dataEvento" required>
+
+    <button type="submit">Criar Evento</button>
+</form>
+
+<table id="tabelaEventos" border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<br>
+<h2>Materiais</h2>
+
+<form id="formMaterial">
+    <label>Título</label>
+    <input type="text" id="tituloMaterial" required>
+
+    <label>Link (PDF / site)</label>
+    <input type="text" id="linkMaterial" required>
+
+    <button type="submit">Adicionar Material</button>
+</form>
+
+<table id="tabelaMateriais" border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Link</th>
+            <th>Status</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- linhas inseridas via JavaScript -->
+    </tbody>
+</table>
+
+
+    <br><br>
+
+    <button id="logout">Sair</button>
+
+</div>
+
+<script>
+async function carregarUsuarios() {
+    const res = await fetch('/admin/usuarios');
+    const usuarios = await res.json();
+
+    const tbody = document.querySelector('#tabelaUsuarios tbody');
+    tbody.innerHTML = '';
+
+    usuarios.forEach(u => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+            <td>${u.nome}</td>
+            <td>${u.email}</td>
+            <td>${u.tipo}</td>
+            <td>${u.ativo ? 'Ativo' : 'Inativo'}</td>
+            <td>
+                ${u.tipo === 'aluno'
+                    ? `<button onclick="alterarStatus(${u.id}, ${u.ativo ? 0 : 1})">
+                        ${u.ativo ? 'Desativar' : 'Ativar'}
+                       </button>`
+                    : '-'}
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+async function alterarStatus(id, ativo) {
+    await fetch(`/admin/usuarios/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ativo })
+    });
+    carregarUsuarios();
+}
+
+document.getElementById('formAluno').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+
+    await fetch('/admin/usuarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, email, senha })
+    });
+
+    e.target.reset();
+    carregarUsuarios();
+});
+
+document.getElementById('logout').addEventListener('click', async () => {
+    await fetch('/logout', { method: 'POST' });
+    window.location.href = '/login.html';
+});
+
+carregarUsuarios();
+async function carregarEventos() {
+    const res = await fetch('/admin/eventos');
+    const eventos = await res.json();
+
+    const tbody = document.querySelector('#tabelaEventos tbody');
+    tbody.innerHTML = '';
+
+    eventos.forEach(e => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${e.titulo}</td>
+            <td>${e.data}</td>
+            <td>${e.ativo ? 'Ativo' : 'Inativo'}</td>
+            <td>
+                <button onclick="alterarEvento(${e.id}, ${e.ativo ? 0 : 1})">
+                    ${e.ativo ? 'Desativar' : 'Ativar'}
+                </button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+async function alterarEvento(id, ativo) {
+    await fetch(`/admin/eventos/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ativo })
+    });
+    carregarEventos();
+}
+
+document.getElementById('formEvento').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const resposta = await fetch('/admin/eventos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            titulo: document.getElementById('tituloEvento').value,
+            descricao: document.getElementById('descricaoEvento').value,
+            data: document.getElementById('dataEvento').value
+        })
+    });
+
+    const resultado = await resposta.json();
+
+    if (!resultado.sucesso) {
+        alert('Erro ao cadastrar evento');
+        return;
+    }
+
+    e.target.reset();
+    carregarEventos(); // agora garantido
+});     
+
+// carregar junto com usuários
+carregarEventos();
+
+
+// ===== CARREGAR MATERIAIS =====
+async function carregarMateriais() {
+    const res = await fetch('/admin/materiais');
+    const materiais = await res.json();
+
+    const tbody = document.querySelector('#tabelaMateriais tbody');
+    tbody.innerHTML = '';
+
+    materiais.forEach(m => {
+        const tr = document.createElement('tr');
+
+        tr.innerHTML = `
+            <td>${m.titulo}</td>
+            <td><a href="${m.link}" target="_blank">Abrir</a></td>
+            <td>${m.ativo ? 'Ativo' : 'Inativo'}</td>
+            <td>
+                <button type="button"
+                        onclick="alterarMaterial(${m.id}, ${m.ativo ? 0 : 1})">
+                    ${m.ativo ? 'Desativar' : 'Ativar'}
+                </button>
+            </td>
+        `;
+
+        tbody.appendChild(tr);
+    });
+}
+
+// ===== ALTERAR STATUS =====
+async function alterarMaterial(id, ativo) {
+    await fetch(`/admin/materiais/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ativo })
+    });
+    carregarMateriais();
+}
+
+// ===== CADASTRAR MATERIAL =====
+document.getElementById('formMaterial').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const titulo = document.getElementById('tituloMaterial').value;
+    const link = document.getElementById('linkMaterial').value;
+
+    const res = await fetch('/admin/materiais', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ titulo, link })
+    });
+
+    const r = await res.json();
+
+    if (!r.sucesso) {
+        alert('Erro ao cadastrar material');
+        return;
+    }
+
+    this.reset();
+    carregarMateriais();
+});
+
+// carregar ao abrir
+carregarMateriais();
+
+const logoutLink = document.getElementById('logoutLink');
+if (logoutLink) {
+    logoutLink.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await fetch('/logout', { method: 'POST' });
+        window.location.href = '/login.html';
+    });
+}
+
+</script>
+<footer class="rodape">
+    <div class="rodape-container">
+        <p class="rodape-nome">Daigyo Karatê-Dō</p>
+        <p class="rodape-info">
+            Organização dedicada à preservação do Karatê tradicional
+        </p>
+        <p class="rodape-copy">
+            © 2026 · Todos os direitos reservados
+        </p>
+    </div>
+</footer>
+</body>
+</html>

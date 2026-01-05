@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Quattrocento+Sans:wght@400;700&display=swap');
+
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   BASE VISUAL
+========================= */
+body {
+    font-family: 'Quattrocento Sans', Arial, sans-serif;
+    background-color: #E6E4E1; /* Ishi */
+    color: #2B2B2B;           /* Sumi */
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Cinzel', Georgia, serif;
+    letter-spacing: 0.5px;
+    color: #3A2F2A;
+}
+input, button, table {
+    font-family: 'Quattrocento Sans', Arial, sans-serif;
+}
+a {
+    color: #3A2F2A;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #8B6B4F;
+    text-decoration: underline;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto 80px;
+    background: #FAF9F7; /* Washi */
+    padding: 40px;
+    border: 1px solid #d5d2cf;
+}
+
+
+/* =========================
+   TÍTULOS
+========================= */
+h1 {
+    font-size: 26px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+p, li {
+    font-size: 15px;
+}
+
+
+/* =========================
+   FORMULÁRIOS
+========================= */
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #bbb;
+    font-size: 14px;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background: #000;
+}
+
+/* =========================
+   BOTÃO SIMPLES
+========================= */
+button {
+    padding: 10px 20px;
+    background: #3A2F2A;
+    color: #FAF9F7;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #8B6B4F;
+}
+
+/* =========================
+   MENSAGENS
+========================= */
+#mensagem {
+    margin-top: 15px;
+    color: #900;
+}
+/* =========================
+   TOPO / MENU
+========================= */
+
+.topo {
+    background: #FAF9F7;
+    border-bottom: 1px solid #d5d2cf;
+}
+
+.topo-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #3A2F2A; /* Kuro-cha */
+}
+
+.menu a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #2B2B2B;
+    font-size: 14px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+    color: #8B6B4F; /* Cha */
+}
+h1 {
+    font-size: 26px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+/* =========================
+   RODAPÉ INSTITUCIONAL
+========================= */
+
+.rodape {
+    background: #E6E4E1; /* Ishi */
+    border-top: 1px solid #d5d2cf;
+    margin-top: 80px;
+}
+
+.rodape-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.rodape-nome {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 15px;
+    color: #3A2F2A; /* Kuro-cha */
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.rodape-info {
+    font-size: 13px;
+    color: #2B2B2B; /* Sumi */
+    margin-bottom: 6px;
+}
+
+.rodape-copy {
+    font-size: 12px;
+    color: #666;
+}
+/* =========================
+   RESPONSIVIDADE
+========================= */
+@media (max-width: 768px) {
+
+    /* CONTAINER */
+    .container {
+        width: 92%;
+        padding: 25px;
+        margin: 20px auto 60px;
+    }
+
+    /* TOPO */
+    .topo-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+
+    /* MENU */
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .menu a {
+        margin-left: 0;
+        font-size: 13px;
+    }
+
+    /* TÍTULOS */
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+        margin-top: 30px;
+    }
+
+    /* TEXTO */
+    p, li {
+        font-size: 14px;
+    }
+}
+/* TABELAS RESPONSIVAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+@media (max-width: 768px) {
+    input, button {
+        font-size: 15px;
+        padding: 12px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+@media (max-width: 768px) {
+    .rodape-container {
+        padding: 25px 15px;
+    }
+
+    .rodape-nome {
+        font-size: 14px;
+    }
+
+    .rodape-info {
+        font-size: 12px;
+    }
+}
