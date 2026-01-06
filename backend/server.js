@@ -31,7 +31,7 @@ const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Erro ao abrir banco:', err.message);
     } else {
-        console.log('Banco de dados conectado com sucesso');
+       // console.log('Banco de dados conectado com sucesso');
     }
 });
 
@@ -79,7 +79,7 @@ db.get(
                 ['Administrador', 'admin@daigyo.com', senhaHash, 'admin', 1]
             );
 
-            console.log('Admin padrão criado: admin@daigyo.com / 123456');
+            // console.log('Admin padrão criado: admin@daigyo.com / 123456');
         }
     }
 );
@@ -321,7 +321,7 @@ app.get('/admin/eventos', autenticar, apenasAdmin, (req, res) => {
 
 // criar evento (admin)
 app.post('/admin/eventos', autenticar, apenasAdmin, (req, res) => {
-    console.log('EVENTO RECEBIDO:', req.body);
+    //console.log('EVENTO RECEBIDO:', req.body);
 
     const { titulo, descricao, data } = req.body;
 
@@ -428,5 +428,5 @@ app.get('/aluno/materiais', autenticar, (req, res) => {
    INICIAR SERVIDOR
 ========================= */
 app.listen(PORT, () => {
-    console.log(`Servidor ativo em http://localhost:${PORT}`);
+    //console.log(`Servidor ativo em http://localhost:${PORT}`);
 });
