@@ -7,19 +7,45 @@
 </head>
 <body>
 
-    <header class="topo">
+    <header class="topo" id="headerTopo">
     <div class="topo-container">
-        <div class="logo">
-            Daigyo
-        </div>
+
+        <img src="imagens/logo-daigyo.png" class="logo-img" id="logoImg" alt="Logo Daigyo">
 
         <nav class="menu">
-            <a href="/index.html">Início</a>
-            <a href="#">Institucional</a>
-            <a href="#">Eventos</a>
-            <a href="#">Contato</a>
-            <a href="#" id="logoutLink">Sair</a>
+            <ul class="menu-list">
+
+                <li><a href="/index.html">Início</a></li>
+
+                <li class="submenu-parent">
+                    <a href="#">Karatê</a>
+                    <ul class="submenu">
+                        <li><a href="/karate/gojuryu.html">Goju-Ryu</a></li>
+                        <li><a href="/karate/jundokan.html">Jundokan</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/eventos.html">Eventos</a></li>
+
+                <li class="submenu-parent">
+                    <a href="#">Sobre</a>
+                    <ul class="submenu">
+                        <li><a href="/sobre/dojo.html">Dojo</a></li>
+                        <li><a href="/sobre/instrutor.html">Instrutor</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/contato.html">Contato</a></li>
+
+                <!-- ITENS DINÂMICOS DO LOGIN -->
+                <li id="menuAluno" style="display:none;"><a href="/aluno.html">Aluno</a></li>
+                <li id="menuAdmin" style="display:none;"><a href="/admin.html">Administrador</a></li>
+                <li id="menuSair" style="display:none;"><a href="#" onclick="logout()">Sair</a></li>
+                <li id="menuLogin"><a href="/login.html">Login</a></li>
+
+            </ul>
         </nav>
+
     </div>
 </header>
 
@@ -320,7 +346,7 @@ if (logoutLink) {
             Organização dedicada à preservação do Karatê tradicional
         </p>
         <p class="rodape-copy">
-            © 2026 · Todos os direitos reservados
+            © Daigyo Dojo Karatê-Dô Goju-Ryu 2026 · Todos os direitos reservados
         </p>
     </div>
 </footer>

@@ -1,0 +1,50 @@
+<header class="topo" id="headerTopo">
+    <div class="topo-container">
+
+        <img src="imagens/logo-daigyo-header-.png" class="logo-img" id="logoImg" alt="Logo Daigyo">
+
+        <nav class="menu">
+            <ul class="menu-list">
+
+                <li><a href="/index.html">Início</a></li>
+
+                <li class="submenu-parent">
+                    <a href="#">Karatê</a>
+                    <ul class="submenu">
+                        <li><a href="/karate/gojuryu.html">Goju-Ryu</a></li>
+                        <li><a href="/karate/jundokan.html">Jundokan</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/eventos.html">Eventos</a></li>
+
+                <li class="submenu-parent">
+                    <a href="#">Sobre</a>
+                    <ul class="submenu">
+                        <li><a href="/sobre/dojo.html">Dojo</a></li>
+                        <li><a href="/sobre/instrutor.html">Instrutor</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/contato.html">Contato</a></li>
+
+                <!-- Sistema (visível apenas para visitantes) -->
+                <li class="submenu-parent" id="menuSistema">
+                    <a href="#">Sistema</a>
+                    <ul class="submenu">
+                        <li><a href="/login-instrutor.html">Instrutor</a></li>
+                        <li><a href="/login-aluno.html">Aluno</a></li>
+                    </ul>
+                </li>
+
+                <!-- Visíveis após login -->
+                <li id="menuAluno" style="display:none;"><a href="/aluno.html">Área do Aluno</a></li>
+                <li id="menuAdmin" style="display:none;"><a href="/admin.html">Administrador</a></li>
+                <li id="menuSair" style="display:none;"><a href="#" onclick="logout()">Sair</a></li>
+
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
