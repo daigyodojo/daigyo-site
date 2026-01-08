@@ -1,296 +1,376 @@
+/* =========================
+   FONTES + RESET
+========================= */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Quattrocento+Sans:wght@400;700&display=swap');
 
-/* =========================
-   RESET BÁSICO
-========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* =========================
-   BASE VISUAL
-========================= */
 body {
-    font-family: 'Quattrocento Sans', Arial, sans-serif;
-    background-color: #E6E4E1; /* Ishi */
-    color: #2B2B2B;           /* Sumi */
+    font-family: 'Quattrocento Sans', sans-serif;
+    color: #2B2B2B;
+    background: #E8E6E2;
+    padding-top: 140px;
     line-height: 1.7;
 }
 
-h1, h2, h3 {
-    font-family: 'Cinzel', Georgia, serif;
-    letter-spacing: 0.5px;
-    color: #3A2F2A;
-}
-input, button, table {
-    font-family: 'Quattrocento Sans', Arial, sans-serif;
-}
-a {
-    color: #3A2F2A;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #8B6B4F;
-    text-decoration: underline;
-}
-
-
 /* =========================
-   CONTAINER
+   MARCA D'ÁGUA SUAVE (BUSA)
 ========================= */
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 40px auto 80px;
-    background: #FAF9F7; /* Washi */
-    padding: 40px;
-    border: 1px solid #d5d2cf;
-}
-
-
-/* =========================
-   TÍTULOS
-========================= */
-h1 {
-    font-size: 26px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-}
-
-h2 {
-    font-size: 20px;
-    margin-top: 40px;
-    margin-bottom: 15px;
-}
-
-p, li {
-    font-size: 15px;
-}
-
-
-/* =========================
-   FORMULÁRIOS
-========================= */
-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #bbb;
-    font-size: 14px;
-}
-
-form button {
-    padding: 10px 20px;
-    border: none;
-    background: #333;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background: #000;
+.busa-bg::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 650px;
+    height: 100%;
+    background: url('../imagens/busa.png') no-repeat right center;
+    background-size: 440px;
+    opacity: 0.2;
+    z-index: -1;
+    pointer-events: none;
 }
 
 /* =========================
-   BOTÃO SIMPLES
+   HEADER FIXO
 ========================= */
-button {
-    padding: 10px 20px;
-    background: #3A2F2A;
-    color: #FAF9F7;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #8B6B4F;
-}
-
-/* =========================
-   MENSAGENS
-========================= */
-#mensagem {
-    margin-top: 15px;
-    color: #900;
-}
-/* =========================
-   TOPO / MENU
-========================= */
-
 .topo {
-    background: #FAF9F7;
-    border-bottom: 1px solid #d5d2cf;
+    background: #F7F5F2;
+    border-bottom: 1px solid #dcd9d5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    transition: 0.3s ease;
 }
 
 .topo-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #3A2F2A; /* Kuro-cha */
+/* LOGO */
+.logo-img {
+    height: 120px;
+    transition: height 1.2s ease-out;
 }
 
-.menu a {
-    margin-left: 20px;
-    text-decoration: none;
-    color: #2B2B2B;
-    font-size: 14px;
+.topo.shrink .logo-img {
+    height: 60px;
 }
 
-.menu a:hover {
-    text-decoration: underline;
-    color: #8B6B4F; /* Cha */
-}
-h1 {
-    font-size: 26px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid #ddd;
+.topo.shrink .topo-container {
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 
-h2 {
-    font-size: 20px;
-    margin-top: 40px;
-    margin-bottom: 15px;
-}
 /* =========================
-   RODAPÉ INSTITUCIONAL
+   MENU + SUBMENU (DESKTOP)
 ========================= */
-
-.rodape {
-    background: #E6E4E1; /* Ishi */
-    border-top: 1px solid #d5d2cf;
-    margin-top: 80px;
+.menu-list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
 }
 
-.rodape-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 30px 20px;
+.menu-list a {
+    text-decoration: none;
+    color: #2B2B2B;
+    font-size: 17px;
+}
+
+.menu-list a:hover {
+    color: #8B6B4F;
+}
+
+.submenu-parent {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #FFFFFF;
+    border: 1px solid #d8d5d0;
+    border-radius: 6px;
+    min-width: 170px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    list-style: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: 9999;
+}
+
+.submenu a {
+    display: block;
+    padding: 10px 18px;
+    color: #333;
+}
+
+.submenu a:hover {
+    background: #f3f0eb;
+}
+
+.submenu-parent:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* =========================
+   HERO + SLIDESHOW
+========================= */
+.hero {
+    width: 100%;
+    height: 360px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 3.2s ease;
+}
+
+.hero-slide.ativo {
+    opacity: 1;
+}
+
+.hero-fume {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.60),
+        transparent
+    );
+}
+
+.hero-conteudo {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
+    color: #fff;
+    z-index: 3;
+}
+
+.hero-titulo {
+    font-family: "Cinzel", serif;
+    font-size: 34px;
+    text-shadow: 0 0 8px #000;
+}
+
+.btn-hero {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 22px;
+    background: rgba(0,0,0,0.65);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    backdrop-filter: blur(2px);
+    transition: 0.3s ease;
+}
+
+.btn-hero:hover {
+    background: rgba(0,0,0,0.85);
+}
+
+/* =========================
+   INTRO
+========================= */
+.intro-centro {
+    text-align: center;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.intro-centro h1 {
+    font-family: "Cinzel", serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   GRID DE 3 COLUNAS
+========================= */
+.grid-blocos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1300px;
+    margin: auto;
+}
+
+.card {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    background: rgba(255,255,255,0.30);
+    transform: translateY(-4px);
+}
+
+.card h2 {
+    font-family: "Cinzel", serif;
+    margin-bottom: 10px;
+}
+
+.card-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 22px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(2px);
+    transition: 0.3s ease;
+}
+
+.card-btn:hover {
+    background: rgba(0,0,0,0.85);
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+.rodape {
+    background: #D9D6D2;
+    text-align: center;
+    padding: 50px 20px;
 }
 
 .rodape-nome {
-    font-family: 'Cinzel', Georgia, serif;
-    font-size: 15px;
-    color: #3A2F2A; /* Kuro-cha */
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-}
-
-.rodape-info {
-    font-size: 13px;
-    color: #2B2B2B; /* Sumi */
-    margin-bottom: 6px;
+    font-family: Cinzel, serif;
+    font-size: 20px;
 }
 
 .rodape-copy {
     font-size: 12px;
-    color: #666;
+    margin-top: 10px;
 }
+
+/* =========================
+   MENU MOBILE
+========================= */
+.menu-mobile-btn {
+    display: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #333;
+    user-select: none;
+}
+
 /* =========================
    RESPONSIVIDADE
 ========================= */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
-    /* CONTAINER */
-    .container {
-        width: 92%;
-        padding: 25px;
-        margin: 20px auto 60px;
+    .menu-mobile-btn {
+        display: block;
     }
 
-    /* TOPO */
-    .topo-container {
+    .menu-list {
+        position: fixed;
+        top: 0;
+        right: -260px;
+        width: 250px;
+        height: 100vh;
+        background: #F7F5F2;
         flex-direction: column;
-        align-items: flex-start;
+        padding-top: 120px;
+        gap: 20px;
+        box-shadow: -6px 0 20px rgba(0,0,0,0.2);
+        transition: right .35s ease;
+        z-index: 99999;
     }
 
-    .logo {
-        margin-bottom: 10px;
-        font-size: 20px;
+    .menu-list.ativo {
+        right: 0;
     }
 
-    /* MENU */
-    .menu {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
+    .submenu {
+        position: relative;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
     }
 
-    .menu a {
-        margin-left: 0;
-        font-size: 13px;
+    .submenu-parent.aberto .submenu {
+        display: block;
     }
 
-    /* TÍTULOS */
-    h1 {
-        font-size: 22px;
-    }
-
-    h2 {
-        font-size: 18px;
-        margin-top: 30px;
-    }
-
-    /* TEXTO */
-    p, li {
+    .submenu-parent > a::after {
+        content: "▾";
+        margin-left: 8px;
         font-size: 14px;
     }
-}
-/* TABELAS RESPONSIVAS */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
 
-@media (max-width: 768px) {
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-}
-@media (max-width: 768px) {
-    input, button {
-        font-size: 15px;
-        padding: 12px;
+    .hero {
+        height: 260px;
     }
 
-    button {
-        width: 100%;
-        margin-top: 5px;
+    .hero-titulo {
+        font-size: 26px;
     }
-}
-@media (max-width: 768px) {
-    .rodape-container {
-        padding: 25px 15px;
+
+    .hero-conteudo {
+        bottom: 25px;
+        padding: 0 20px;
+    }
+
+    .intro-centro {
+        margin: 20px 15px;
+    }
+
+    .grid-blocos {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .rodape {
+        padding: 40px 15px;
     }
 
     .rodape-nome {
-        font-size: 14px;
-    }
-
-    .rodape-info {
-        font-size: 12px;
+        font-size: 18px;
     }
 }
