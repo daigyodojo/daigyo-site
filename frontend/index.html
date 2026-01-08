@@ -1,84 +1,215 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daigyo – Home</title>
-    <link rel="stylesheet" href="/frontend/css/style.css">
+    <title>Daigyo Dojo – Home</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-    <!-- TOPO -->
-    <div class="topo">
-        <div class="topo-container">
-            <div class="logo">DAIGYO</div>
+<body class="busa-bg">
 
-            <nav class="menu">
-                <a href="/index.html">Início</a>
-                <a href="#">Institucional</a>
-                <a href="#">Eventos</a>
-                <a href="#">Contato</a>
-            </nav>
-        </div>
-    </div>
+<!-- =======================
+     HEADER FIXO
+======================= -->
+<header class="topo" id="headerTopo">
+    <div class="topo-container">
 
-    <!-- CONTEÚDO -->
-    <div class="container">
+        <!-- LOGO -->
+        <img src="imagens/logo-daigyo-header-2.png" class="logo-img" id="logoImg" alt="Logo Daigyo">
 
-        <!-- BLOCO 1 -->
-        <section>
-            <h1>Daigyo — Prática, Disciplina e Caminho</h1>
-            <p>
-                A tradição marcial preservada em um ambiente de estudo, silêncio e constância. 
-                Treinamos com respeito à linhagem de Okinawa, valorizando a técnica, o corpo 
-                e a atitude.
-            </p>
-        </section>
+        <!-- BOTÃO MOBILE -->
+        <div class="menu-mobile-btn" id="btnMobile">☰</div>
 
-        <!-- BLOCO 2 -->
-        <section>
-            <h2>A prática como caminho</h2>
-            <p>
-                O treinamento físico e técnico é apenas parte do percurso. Nos dedicamos ao 
-                desenvolvimento integral: postura, respiração, foco, convivência e ética marcial.
-            </p>
-        </section>
+        <!-- MENU -->
+        <nav>
+            <ul class="menu-list">
 
-        <!-- BLOCO 3 -->
-        <section>
-            <h2>Nossos Princípios</h2>
-            <ul>
-                <li>Disciplina no treino</li>
-                <li>Respeito à tradição</li>
-                <li>Aperfeiçoamento contínuo</li>
-                <li>Cuidado com o corpo</li>
-                <li>Responsabilidade e convivência harmoniosa</li>
+                <li><a href="index.html">Início</a></li>
+
+                <li class="submenu-parent">
+                    <a href="#">Karate</a>
+                    <ul class="submenu">
+                        <li><a href="karate/gojuryu.html">Goju-Ryu</a></li>
+                        <li><a href="karate/jundokan.html">Jundokan</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="eventos.html">Eventos</a></li>
+
+                <li class="submenu-parent">
+                    <a href="#">Sobre</a>
+                    <ul class="submenu">
+                        <li><a href="sobre/dojo.html">Dojo</a></li>
+                        <li><a href="sobre/instrutor.html">Instrutor</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="contato.html">Contato</a></li>
+
+                <!-- SISTEMA / LOGIN -->
+                <li class="submenu-parent" id="menuSistema">
+                    <a href="#">Sistema</a>
+                    <ul class="submenu">
+                        <li><a href="login-instrutor.html">Instrutor</a></li>
+                        <li><a href="login-aluno.html">Aluno</a></li>
+                    </ul>
+                </li>
+
+                <!-- VISÍVEIS APÓS LOGIN -->
+                <li id="menuAluno" style="display:none;"><a href="aluno.html">Área do Aluno</a></li>
+                <li id="menuAdmin" style="display:none;"><a href="admin.html">Administrador</a></li>
+                <li id="menuSair" style="display:none;"><a href="#" onclick="logout()">Sair</a></li>
+
             </ul>
-        </section>
-
-        <!-- BLOCO 4 -->
-        <section>
-            <h2>Área do Aluno</h2>
-            <p>
-                Informações internas, materiais de estudo e comunicados estão disponíveis 
-                exclusivamente para membros ativos.
-            </p>
-
-            <a href="/login.html">
-                <button>Entrar na Área do Aluno</button>
-            </a>
-        </section>
+        </nav>
 
     </div>
+</header>
 
-    <!-- RODAPÉ -->
-    <div class="rodape">
-        <div class="rodape-container">
-            <div class="rodape-nome">Daigyo</div>
-            <div class="rodape-info">Prática, Disciplina e Caminho</div>
-            <div class="rodape-copy">© 2026 — Conteúdo institucional</div>
+<!-- =======================
+     HERO
+======================= -->
+<section class="hero">
+
+    <img src="imagens/Carro-1.jpg" class="hero-slide ativo" alt="">
+    <img src="imagens/Carro-2.png" class="hero-slide" alt="">
+    <img src="imagens/Carro-3.jpg" class="hero-slide" alt="">
+
+    <div class="hero-fume"></div>
+
+    <div class="hero-conteudo">
+        <h1 class="hero-titulo">DAIGYO DOJO KARATE-DO GOJU-RYU</h1>
+        <p class="hero-subtitulo">Prática • Disciplina • Caminho</p>
+        <a href="sobre/dojo.html" class="btn-hero">SAIBA MAIS</a>
+    </div>
+
+</section>
+
+<!-- =======================
+     TÍTULO CENTRAL
+======================= -->
+<main class="conteudo">
+
+    <section class="intro-centro">
+        <h1>Aqui praticamos o Karate Tradicional</h1>
+        <p>
+            O Karate-Do Goju-Ryu autêntico de Okinawa preservado pela linhagem da Jundokan.
+            Treinamento físico, mental e espiritual em harmonia.
+        </p>
+    </section>
+
+    <!-- =======================
+         BLOCOS (3 COLUNAS)
+    ======================= -->
+    <section class="grid-blocos">
+
+        <div class="card">
+            <h2>História do Karate-Do</h2>
+            <p>Mais que técnica — um caminho de evolução e harmonia entre corpo e mente.</p>
+            <a href="karate.html" class="card-btn">SAIBA MAIS</a>
         </div>
+        
+        <div class="card">
+            <h2>Prática como Caminho</h2>
+            <p>A prática envolve postura, respiração, foco, disciplina e aprimoramento.</p>
+            <a href="sensei.html" class="card-btn">SAIBA MAIS</a>
+        </div>
+      
+        <div class="card">
+            <h2>Nossos Princípios</h2>
+            <p>Disciplina • Tradição • Harmonia • Aperfeiçoamento Contínuo</p>
+            <a href="dojo.html" class="card-btn">SAIBA MAIS</a>
+        </div>
+
+    </section>
+
+</main>
+
+<!-- =======================
+     RODAPÉ
+======================= -->
+<footer class="rodape">
+    <div class="rodape-container">
+        <div class="rodape-nome">Daigyo Dojo Karate-Do Goju-Ryu</div>
+        <div class="rodape-info">Prática, Disciplina e Caminho</div>
+        <div class="rodape-copy">© 2026 — Glauco Escórcio</div>
     </div>
+</footer>
+
+<!-- =======================
+     SCRIPT – SLIDES
+======================= -->
+<script>
+let slides = document.querySelectorAll('.hero-slide');
+let index = 0;
+
+function trocarSlide() {
+    slides[index].classList.remove('ativo');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('ativo');
+}
+setInterval(trocarSlide, 5000);
+</script>
+
+<!-- =======================
+     SCRIPT – LOGIN DINÂMICO
+======================= -->
+<script>
+function atualizarMenu() {
+    const tipo = localStorage.getItem("tipoUsuario");
+
+    document.getElementById("menuAluno").style.display = (tipo === "aluno") ? "inline-block" : "none";
+    document.getElementById("menuAdmin").style.display = (tipo === "admin") ? "inline-block" : "none";
+    document.getElementById("menuSair").style.display  = (tipo ? "inline-block" : "none");
+    document.getElementById("menuSistema").style.display = (tipo ? "none" : "inline-block");
+}
+
+function logout() {
+    localStorage.removeItem("tipoUsuario");
+    atualizarMenu();
+    window.location.href = "index.html";
+}
+
+document.addEventListener("DOMContentLoaded", atualizarMenu);
+</script>
+
+<!-- =======================
+     SCRIPT – MENU MOBILE
+======================= -->
+<script>
+const btnMobile = document.getElementById("btnMobile");
+const menuList = document.querySelector(".menu-list");
+
+btnMobile.addEventListener("click", () => {
+    menuList.classList.toggle("ativo");
+});
+
+// abrir submenus no mobile
+document.querySelectorAll(".submenu-parent > a").forEach(link => {
+    link.addEventListener("click", (e) => {
+        if (window.innerWidth <= 900) {
+            e.preventDefault();
+            link.parentElement.classList.toggle("aberto");
+        }
+    });
+});
+</script>
+
+<!-- =======================
+     SCRIPT – SHRINK HEADER
+======================= -->
+<script>
+window.addEventListener("scroll", () => {
+    const topo = document.getElementById("headerTopo");
+    if (window.scrollY > 50) {
+        topo.classList.add("shrink");
+    } else {
+        topo.classList.remove("shrink");
+    }
+});
+</script>
 
 </body>
 </html>
